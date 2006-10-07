@@ -326,12 +326,7 @@ private
 
 	def ui_fill_track_info(item)
 		unless item.nil?
-			if item.channel.nil?
-				msg = Edje::Message.new(0, item.artist, item.title, item.album)
-			else
-				msg = Edje::Message.new(0, "", item.title, "")
-			end
-			@edje.send_message(msg)
+			@edje.send_message(item.track_info_message)
 		end
 	end
 

@@ -116,6 +116,14 @@ class PlaylistItem
 		set_parts_text unless @edje.nil?
 	end
 
+	def track_info_message
+		unless @props[:channel].nil?
+			Edje::Message.new(0, channel)
+		else
+			Edje::Message.new(0, artist, title, album)
+		end
+	end
+
 	private
 	def set_parts_text
 		tmp = (duration == -1) ? "" :

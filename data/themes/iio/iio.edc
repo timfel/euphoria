@@ -31,19 +31,30 @@
 		{
 			switch (id) {
 				case MSG_ID_SET_SONGNAME: {
-					new buf[128];
+					new buf[128], args_left;
 
-					if (type != MSG_STRING_SET || numargs () < 5)
-						return;
+					args_left = numargs () - 2;
 
-					getsarg (2, buf, 128);
-					set_text (PART:"artist_name", buf);
+					/* if the one argument is a string, the current song
+					 * is a stream, and the argument is the stream's name
+					 * (channel name).
+					 */
+					if (type == MSG_STRING && args_left == 1) {
+						getsarg (2, buf, 128);
+						set_text (PART:"artist_name", buf);
 
-					getsarg (3, buf, 128);
-					set_text (PART:"song_name", buf);
+						set_text (PART:"song_name", "");
+						set_text (PART:"album_name", "");
+					} else if (type == MSG_STRING_SET && args_left > 1) {
+						getsarg (2, buf, 128);
+						set_text (PART:"artist_name", buf);
 
-					getsarg (4, buf, 128);
-					set_text (PART:"album_name", buf);
+						getsarg (3, buf, 128);
+						set_text (PART:"song_name", buf);
+
+						getsarg (4, buf, 128);
+						set_text (PART:"album_name", buf);
+					}
 				}
 			}
 		}
