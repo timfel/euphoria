@@ -1,5 +1,3 @@
-# $Id: playtime_updater.rb,v 1.4 2005/07/07 16:33:55 tsauerbeck Exp $
-
 class PlaytimeUpdater
 	INTERVAL = 0.25
 

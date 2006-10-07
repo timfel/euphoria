@@ -1,5 +1,3 @@
-# $Id: playback_status_handler.rb,v 1.1 2005/04/24 22:33:15 tsauerbeck Exp $
-
 class PlaybackStatusHandler
 	def initialize(xmms, &block)
 		@block = block

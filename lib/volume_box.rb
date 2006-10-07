@@ -1,5 +1,3 @@
-# $Id: volume_box.rb,v 1.1 2006/07/29 02:07:04 tilman Exp $
-
 class VolumeBox
 	def initialize(edje, xmms, part)
 		@edje = edje

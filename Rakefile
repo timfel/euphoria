@@ -1,5 +1,3 @@
-# $Id: Rakefile,v 1.10 2005/06/14 16:41:52 tsauerbeck Exp $
-
 require "rbconfig"
 require "rake/clean"
 

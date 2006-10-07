@@ -1,7 +1,5 @@
 #!/usr/bin/ruby -w
 
-# $Id: euphoria,v 1.41 2006/09/07 13:38:26 tilman Exp $
-
 require "ecore"
 require "ecore_x"
 require "ecore_evas"

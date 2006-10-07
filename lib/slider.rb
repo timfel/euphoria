@@ -1,5 +1,3 @@
-# $Id: slider.rb,v 1.3 2006/05/13 14:59:17 tilman Exp $
-
 class Slider
 	def initialize(edje, xmms, part, config)
 		@edje = edje

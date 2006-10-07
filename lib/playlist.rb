@@ -1,5 +1,3 @@
-# $Id: playlist.rb,v 1.30 2006/03/11 19:09:32 tsauerbeck Exp $
-
 require "euphoria/playlist_item"
 
 class Playlist < Array

@@ -1,5 +1,3 @@
-# $Id: playlist_item.rb,v 1.21 2006/07/29 01:55:31 tilman Exp $
-
 class PlaylistItem
 	attr_reader :id, :edje, :position, :selected, :hilighted
 
