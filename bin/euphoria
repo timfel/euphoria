@@ -2,6 +2,7 @@
 
 require "ecore"
 require "ecore_x"
+require "evas"
 require "ecore_evas"
 require "edje"
 require "esmart"
