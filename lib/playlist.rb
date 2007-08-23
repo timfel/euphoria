@@ -12,12 +12,14 @@ class Playlist < Array
 		@eet = nil
 		@container = nil
 
-		@xmms.playlist_list.notifier { |res| push(*res.value) }
+		@xmms.playlist.entries.notifier { |res| push(*res.value) }
 
-		begin
-			@current_pos = @xmms.playlist_current_pos.wait.value
-		rescue Xmms::Result::ValueError
-			@current_pos = nil
+		@xmms.playlist.current_pos.notifier do |res|
+			begin
+				@current_pos = res.value
+			rescue Xmms::Result::ValueError
+				@current_pos = nil
+			end
 		end
 
 		@xmms.broadcast_playlist_current_pos.notifier do |res|

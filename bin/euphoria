@@ -110,7 +110,7 @@ class Euphoria
 		end
 =end
 
-		handle_current_pos(@xmms.playlist_current_pos.wait)
+		handle_current_pos(@xmms.playlist.current_pos.wait)
 	end
 
 	def show
