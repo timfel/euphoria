@@ -150,6 +150,7 @@ private
 		@ee = Ecore::Evas::SoftwareX11.new
 		@ee.title = "Euphoria"
 		@ee.name_class = ["Euphoria", "Euphoria"]
+		@ee.has_alpha = true
 		@ee.borderless = true
 
 		#@ee.evas.font_path_append("/usr/X11R6/lib/X11/fonts/TTF")
@@ -192,8 +193,6 @@ private
 		@ee.set_size_min(w, h)
 
 		@ee.resize(w, h)
-
-		@ee.shaped = !@edje.data("shaped").nil?
 
 		ui_refresh_seeker(0)
 	end
