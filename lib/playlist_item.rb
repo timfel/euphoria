@@ -13,7 +13,7 @@ class PlaylistItem
 		@selected = false
 		@hilighted = false
 
-		@props = nil
+		@props = {}
 
 		@xmms.medialib_get_info(id).notifier do |res|
 			self.properties = res.value
