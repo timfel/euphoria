@@ -21,7 +21,7 @@ require "euphoria/slider"
 require "euphoria/volume_box"
 require "euphoria/playtime_updater"
 require "euphoria/playback_status_handler"
-require "euphoria/file_dialog"
+#require "euphoria/file_dialog"
 
 Config = Struct.new("Config", :ipc_path, :theme, :time_display_elapsed)
 
