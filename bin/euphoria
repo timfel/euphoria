@@ -154,6 +154,7 @@ private
 
 		#@ee.evas.font_path_append("/usr/X11R6/lib/X11/fonts/TTF")
 		#@ee.evas.font_path_append(ENV["HOME"] + "/.fonts")
+		@ee.evas.font_hinting = Evas::Evas::AUTO
 
 		@ee.on_pre_render { Edje::thaw }
 		@ee.on_post_render { Edje::freeze }
