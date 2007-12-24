@@ -159,6 +159,7 @@ class Playlist < Array
 		@ee = Ecore::Evas::SoftwareX11.new
 		@ee.title = "Euphoria Playlist"
 		@ee.borderless = true
+		@ee.evas.font_hinting = Evas::Evas::AUTO
 
 		@ee.on_pre_render { Edje::thaw }
 		@ee.on_post_render { Edje::freeze }
