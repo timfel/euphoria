@@ -33,7 +33,7 @@ unless Xmms.respond_to?(:userconfdir)
 end
 
 class Euphoria
-	DATA_DIR = "/usr/local/share/euphoria"
+	DATA_DIR = "/usr/share/euphoria"
 	DATA_DIR_PRIV = File.join(Xmms.userconfdir,
 	                          "clients",
 	                          "euphoria")
@@ -317,15 +317,16 @@ private
 	def handle_current_pos(res)
 		begin
 			pos = res.value
+            pos =~ /.*(d+).*/
 		rescue Xmms::Result::ValueError
 		else
-			ui_fill_track_info(@playlist[pos])
+			ui_fill_track_info(@playlist[$1.to_i])
 		end
 	end
 
 	def ui_fill_track_info(item)
 		unless item.nil?
-			@edje.send_message(item.track_info_message)
+            @edje.send_message(item.track_info_message)
 		end
 	end
 

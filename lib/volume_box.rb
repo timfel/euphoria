@@ -4,7 +4,8 @@ class VolumeBox
 		@xmms = xmms
 		@part = part
 
-		self.value = @xmms.playback_volume_get.wait.value
+        #self.value = @xmms.playback_volume_get.wait.value
+        self.value = 0
 
 		@edje.on_signal("VOL_INCR") do
 			unless @vol[:left] == 100

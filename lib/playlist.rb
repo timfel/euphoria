@@ -60,7 +60,7 @@ class Playlist < Array
 	end
 
 	def current_item
-		@current_pos && self[@current_pos]
+		@current_pos && self[@current_pos[:position]]
 	end
 
 	def show(eet, is_separate)
