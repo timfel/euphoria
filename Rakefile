@@ -3,7 +3,7 @@ require "rake/clean"
 
 sitelibdir = ENV["RUBYLIBDIR"] || Config::CONFIG["sitelibdir"]
 destdir = "#{ENV["DESTDIR"]}"
-prefix = ENV["PREFIX"] || "/usr/local"
+prefix = ENV["PREFIX"] || "/usr/"
 
 themes = ["iio", "winter"].map do |t|
 	"data/themes/#{t}/#{t}.edj"
