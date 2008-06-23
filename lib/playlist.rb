@@ -23,23 +23,25 @@ class Playlist < Array
 		end
 
 		@xmms.broadcast_playlist_current_pos.notifier do |res|
-			@current_pos = res.value
+			@current_pos = res.wait.value
 
 			tmp = find { |i| i.hilighted }
 			tmp.hilighted = false unless tmp.nil?
 
-			current_item.hilighted = true
+            unless current_item == nil
+    			current_item.hilighted = true
+            end
 		end
 
 		@xmms.broadcast_playlist_changed.notifier do |res|
 			case res.value[:type]
-				when Xmms::Result::PLAYLIST_CHANGED_ADD
+				when 0 #Xmms::Result::PLAYLIST_CHANGED_ADD
 					self << res.value[:id]
-				when Xmms::Result::PLAYLIST_CHANGED_REMOVE
+				when 3 #Xmms::Result::PLAYLIST_CHANGED_REMOVE
 					# the daemon sends the position of the song, not the
 					# unique mlib id
 					delete(self[res.value[:position]])
-				when Xmms::Result::PLAYLIST_CHANGED_CLEAR
+				when 4 #Xmms::Result::PLAYLIST_CHANGED_CLEAR
 					clear
 			end
 		end
@@ -60,7 +62,11 @@ class Playlist < Array
 	end
 
 	def current_item
-		@current_pos && self[@current_pos[:position]]
+        begin
+		    @current_pos && self[@current_pos[:position]]
+        rescue RangeError
+            @current_pos = nil
+        end
 	end
 
 	def show(eet, is_separate)

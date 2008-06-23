@@ -23,7 +23,7 @@ require "euphoria/playtime_updater"
 require "euphoria/playback_status_handler"
 #require "euphoria/file_dialog"
 
-Config = Struct.new("Config", :ipc_path, :theme, :time_display_elapsed)
+Config = Struct.new("Config", :ipc_path, :theme, :time_display_elapsed, :debug)
 
 # backwards compatibility w/ DrFeelgood and earlier
 unless Xmms.respond_to?(:userconfdir)
@@ -309,17 +309,20 @@ private
 		end
 
 		@xmms.broadcast_playlist_current_pos.notifier do |res|
-			handle_current_pos(res)
+			handle_current_pos(res.wait)
 		end
 	end
 
 	def handle_current_pos(res)
 		begin
 			pos = res.value
-            pos =~ /.*(d+).*/
 		rescue Xmms::Result::ValueError
 		else
-			ui_fill_track_info(@playlist[$1.to_i])
+            begin
+			    ui_fill_track_info(@playlist[pos[:position].to_i])
+            rescue RangeError
+                ui_fill_track_info(@playlist[0])
+            end
 		end
 	end
 
@@ -376,6 +379,7 @@ private
 			@config.ipc_path = nil
 			@config.theme = "winter"
 			@config.time_display_elapsed = true
+            @config.debug = true
 		end
 	end
 
