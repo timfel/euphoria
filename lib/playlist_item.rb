@@ -50,6 +50,10 @@ class PlaylistItem
 			end
 		end
 
+        @edje.on_signal("PLAYLIST_ITEM_SELECTED") do |sig, src|
+            puts sig, src
+        end
+
 		@edje.on_signal("playlist_item.hilighted") do |sig, src|
 			next if src == "Euphoria"
 

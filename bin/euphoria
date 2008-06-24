@@ -282,6 +282,15 @@ private
 			@xmms.configval_set("playlist.repeat_all", v).wait
 		end
 
+        @edje.on_signal("PLAYLIST_DEL") do |sig, src|
+            if src == "minus"
+                @playlist.find_all { |i| i.hilighted }.each do |i|
+				    #@xmms.playlist.remove_entry(i.position)
+                    puts i.position
+                end
+            end
+        end
+
 		@xmms.broadcast_configval_changed.notifier do |res|
 			k = res.value.keys.first
 			v = res.value.values.first
