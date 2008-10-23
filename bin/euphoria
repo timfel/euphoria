@@ -284,10 +284,9 @@ private
 
         @edje.on_signal("PLAYLIST_DEL") do |sig, src|
             if src == "minus"
-                @playlist.find_all { |i| i.hilighted }.each do |i|
-				    #@xmms.playlist.remove_entry(i.position)
-                    puts i.position
-                end
+                c = 0
+                @playlist.selected.each { |i| @xmms.playlist.remove_entry(c) if i; c+=1 } 
+                puts c
             end
         end
 

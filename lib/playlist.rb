@@ -2,6 +2,7 @@ require "euphoria/playlist_item"
 
 class Playlist < Array
 	attr_reader :container
+    attr_accessor :selected
 
 	def initialize(xmms, on_cur_item_changed)
 		super()
@@ -11,6 +12,7 @@ class Playlist < Array
 		@ee = nil
 		@eet = nil
 		@container = nil
+        @selected = []
 
 		@xmms.playlist.entries.notifier { |res| push(*res.value) }
 
@@ -131,6 +133,7 @@ class Playlist < Array
 
 	def push(*args)
 		args.each do |id|
+            @selected += [false]
 			item = PlaylistItem.new(id, @xmms, self)
 			super(item)
 
@@ -145,6 +148,7 @@ class Playlist < Array
 		unless item.is_a?(PlaylistItem)
 			item = find { |i| i.id == item }
 		end
+        @selected.delete_at(item.position)
 
 		item.hide if item.visible?
 		super

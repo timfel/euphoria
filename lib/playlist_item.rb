@@ -51,7 +51,7 @@ class PlaylistItem
 		end
 
         @edje.on_signal("PLAYLIST_ITEM_SELECTED") do |sig, src|
-            puts sig, src
+            @playlist.selected[@position] = true
         end
 
 		@edje.on_signal("playlist_item.hilighted") do |sig, src|
